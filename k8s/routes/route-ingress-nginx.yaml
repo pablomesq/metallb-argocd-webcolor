@@ -1,0 +1,65 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: ingress-simples
+# spec:
+#   ingressClassName: nginx  # ← Especifica qual ingress controller usar: k get ingressclass
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: web-green
+#             port:
+#               number: 80
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  # namespace: ingress-nginx   # ← Namespace do controller
+  name: ingress-path
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx  # ← Especifica qual ingress controller usar: k get ingressclass
+  rules:
+    - http:
+        paths:
+          - path: /blue
+            pathType: Prefix
+            backend:
+              service:
+                name: web-blue
+                port:
+                  number: 80
+          - path: /green
+            pathType: Prefix
+            backend:
+              service:
+                name: web-green
+                port:
+                  number: 80
+          # - path: /argocd
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: argo-cd-argocd-server 
+          #       port:
+          #         number: 80
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   namespace: ingress-nginx   # ← Namespace do controller
+#   name: ingress-path-argocd
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   ingressClassName: nginx  # ← Especifica qual ingress controller usar: k get ingressclass
+#   rules:
+#     - http:
+#         paths:
+          
+      

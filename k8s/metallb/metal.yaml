@@ -1,0 +1,19 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 172.18.100.1-172.18.100.50  # 50 IPs geralmente são suficientes
+
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2advertisement
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+  - ip-pool
+---
