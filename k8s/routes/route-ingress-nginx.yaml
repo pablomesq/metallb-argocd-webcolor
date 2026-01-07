@@ -26,16 +26,20 @@ metadata:
 spec:
   ingressClassName: nginx  # ← Especifica qual ingress controller usar: k get ingressclass
   rules:
-    - http:
+    - host: blue.webcolor.com
+      http:
         paths:
-          - path: /blue
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: web-blue
                 port:
                   number: 80
-          - path: /green
+    - host: green.webcolor.com
+      http:
+        paths:
+          - path: /
             pathType: Prefix
             backend:
               service:
