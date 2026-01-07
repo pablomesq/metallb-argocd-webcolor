@@ -5,7 +5,7 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-  - 172.18.100.1-172.18.100.50  # 50 IPs geralmente são suficientes
+  - 172.18.0.1-172.18.0.50  # 50 IPs geralmente são suficientes
 
 ---
 apiVersion: metallb.io/v1beta1
